@@ -5,17 +5,36 @@ function updateDisplay(){
     display.textContent = displayValue;
 }
 const numKeys = document.getElementsByClassName('numkey');
+const operations = document.getElementsByClassName("op");
+const eul = document.getElementsByClassName('equal');
+const clr = document.getElementsByClassName('clear')['0'];
+
+let x = '';
+let y = '';
+let operator = '';
 
 for(let button of numKeys){
     button.addEventListener('click', function() {
         const buttonValue = button.textContent;
 
         if(displayValue === '0'){
-            displayValue = buttonValue
+            if(operator = ''){
+                x += buttonValue;
+                displayValue = x;
+            }
         }else{
-            displayValue += buttonValue;
+            y += buttonValue;
+            displayValue = y;
         }
         updateDisplay();
+    });
+}
+
+for (let button of operations){
+    button.addEventListener('click', function(){
+        if (x !== ''){
+            operator = button.textContent;
+        }
     });
 }
 function add(a,b){
@@ -34,15 +53,13 @@ function divide(a,b){
     return a / b
 }
 
-let x = '';
-let y = '';
-let operator = '';
+
 
 function operate(x,y,operator){
     return (x) (operator) (y);
 }
 
-const clr = document.getElementsByClassName('clear')['0'];
+
 clr.addEventListener('click',function(){
     displayValue = '0';
     x = '';
