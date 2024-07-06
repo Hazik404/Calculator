@@ -8,6 +8,7 @@ const numKeys = document.getElementsByClassName('numkey');
 const operations = document.getElementsByClassName("op");
 const eul = document.getElementsByClassName('equal')['0'];
 const clr = document.getElementsByClassName('clear')['0'];
+const bckspc = document.getElementsByClassName('backspace')['0'];
 
 let x = '';
 let y = '';
@@ -79,7 +80,18 @@ function operate(x,y,operator){
             return 0;               
     }
 }
-
+bckspc.addEventListener('click', function(){
+    
+        if(operator === ''){
+            x = x.slice(0,-1);
+            displayValue = x || '0';
+        }else{
+            y = y.slice(0,-1);
+            displayValue = y || '0';
+        }
+        updateDisplay();
+    
+});
 
 clr.addEventListener('click',function(){
     displayValue = '0';
