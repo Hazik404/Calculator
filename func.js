@@ -6,7 +6,7 @@ function updateDisplay(){
 }
 const numKeys = document.getElementsByClassName('numkey');
 const operations = document.getElementsByClassName("op");
-const eul = document.getElementsByClassName('equal');
+const eul = document.getElementsByClassName('equal')['0'];
 const clr = document.getElementsByClassName('clear')['0'];
 
 let x = '';
@@ -17,12 +17,11 @@ for(let button of numKeys){
     button.addEventListener('click', function() {
         const buttonValue = button.textContent;
 
-        if(displayValue === '0'){
-            if(operator = ''){
+            if(operator === ''){
                 x += buttonValue;
                 displayValue = x;
             }
-        }else{
+        else{
             y += buttonValue;
             displayValue = y;
         }
@@ -37,6 +36,17 @@ for (let button of operations){
         }
     });
 }
+
+eul.addEventListener('click', function(){
+    if(x !== '' && y !== '' && operator !== ''){
+        const result = operate(parseFloat(x), parseFloat(y), operator);
+        displayValue = result.toString();
+        x = result.toString();
+        y = '';
+        operator = '';
+        updateDisplay();
+    }
+});
 function add(a,b){
     return a + b
 }
@@ -56,7 +66,18 @@ function divide(a,b){
 
 
 function operate(x,y,operator){
-    return (x) (operator) (y);
+    switch (operator) {
+        case "+":
+            return add(x,y);
+        case "-":
+            return sub(x,y); 
+        case "*":
+            return multi(x,y);
+        case "/":
+            return divide(x,y);
+        default:
+            return 0;               
+    }
 }
 
 
