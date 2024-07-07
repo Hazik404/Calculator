@@ -61,9 +61,13 @@ function multi(a,b){
 }
 
 function divide(a,b){
-    return a / b
+    if(b === 0){
+        return "nah man, not possible"
+    }else{
+        return a / b
+    }
+    
 }
-
 
 
 function operate(x,y,operator){
@@ -75,7 +79,7 @@ function operate(x,y,operator){
         case "*":
             return multi(x,y);
         case "/":
-            return divide(x,y);
+            return divide(x,y);   
         default:
             return 0;               
     }
@@ -100,7 +104,3 @@ clr.addEventListener('click',function(){
     operator = '';
     updateDisplay();
 });
-console.log(add(2,3))
-console.log(sub(2,3))
-console.log(multi(2,3))
-console.log(divide(2,3))
